@@ -1,6 +1,5 @@
 module MotionFileStore
   class FileStore
-    include LogInMotion
     attr_accessor :directory,          :fileCount, 
                   :itemsPerFile,       :writeBufferSize, 
                   :itemsInCurrentFile, :itemBuffer
