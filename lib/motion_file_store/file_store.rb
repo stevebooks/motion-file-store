@@ -9,8 +9,6 @@ module MotionFileStore
       if !params[:directory]
         raise "Please specify a directory. i.e. FileStore.new(:directory=>'mydir')"
       end
-      debug "initialize motion file store"
-      debug "Directory:#{params[:directory]}"
 
       self.directory = params[:directory]
       initializeFileCount
@@ -25,11 +23,9 @@ module MotionFileStore
 
 
     def addItem(item)
-      #debug "Adding Item:#{item}"
       self.itemBuffer << item
 
       if self.itemBuffer.size % self.writeBufferSize == 0
-        #debug 'hit our writeBufferSize'
         writeItemBuffer
       end
 
@@ -78,7 +74,6 @@ module MotionFileStore
     end
 
     def save
-      #debug 'save'
       writeItemBuffer
       @items = []
     end
@@ -89,7 +84,6 @@ module MotionFileStore
       def createDirectory
         fileManager = NSFileManager.defaultManager
         if !fileManager.fileExistsAtPath(self.directoryWithPath)
-          #debug "creating a new Directory at path:#{self.directoryWithPath}"
           unless fileManager.createDirectoryAtPath(self.directoryWithPath, withIntermediateDirectories:true, attributes:nil, error:nil)
             raise "Unable to create directory!"
           end
@@ -97,7 +91,6 @@ module MotionFileStore
       end
 
       def createFile
-        debug "creating new file name:#{self.currentFile}"
         path = self.currentFile
         data = "".dataUsingEncoding(NSUTF8StringEncoding)
         data.writeToFile(path, atomically:true)
@@ -105,30 +98,24 @@ module MotionFileStore
 
       #Looks through the current files to determine where the file count should start
       def initializeFileCount
-        debug "initializeFileCount"
         fls = self.files
         if fls.empty?
-          debug "no current files"
           self.fileCount = 0
           return
         end
 
         lastFile = fls.last
-        debug "lastFile is:#{lastFile}"
         count = lastFile.split(".")[0].to_i
-        debug "count:#{count}"
         self.fileCount = count+1
       end
 
       def writeItemBuffer
-        #debug 'writeItemBuffer'
         output = ""
         self.itemBuffer.each do |item|
           output += "#{item}\n"
           self.itemsInCurrentFile+=1
 
           if self.itemsInCurrentFile >= self.itemsPerFile
-            #debug "Hit our max items per file"
             writeToFile(output)
             self.fileCount+=1
             self.itemsInCurrentFile = 0
@@ -137,12 +124,10 @@ module MotionFileStore
         end
 
         writeToFile(output) unless output == ""
-        #debug "resetting itemBuffer"
         self.itemBuffer = []
       end
 
       def writeToFile(str)
-        #debug "writeToFile:\n#{str}"
         fileManager = NSFileManager.defaultManager
         currFile = self.currentFile
         if !fileManager.fileExistsAtPath(self.currentFile)

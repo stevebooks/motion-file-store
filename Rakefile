@@ -3,8 +3,8 @@ require 'motion/project/template/ios'
 require 'bundler'
 require 'bubble-wrap'
 
-#$:.unshift("./lib/")
-#require './lib/motion_file_store'
+$:.unshift("./lib/")
+require './lib/motion_file_store'
 
 require 'bundler'
 Bundler.require
