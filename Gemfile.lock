@@ -1,0 +1,11 @@
+GEM
+  specs:
+    bubble-wrap (1.1.5)
+    rake (0.9.6)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bubble-wrap (>= 1.1.5)
+  rake (= 0.9.6)
