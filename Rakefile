@@ -1,7 +1,8 @@
 $:.unshift("/Library/RubyMotion/lib")
-require 'motion/project'
+require 'motion/project/template/ios'
 require 'bundler'
 require 'bubble-wrap'
+require 'log-in-motion'
 
 $:.unshift("./lib/")
 require './lib/motion_file_store'
