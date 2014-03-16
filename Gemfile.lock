@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/stevebooks/log-in-motion.git
-  revision: 09d3b4b1ad2e48e60d633f06fe9f974baf17a9f7
+  revision: 050dceebce67363d8f09c39660b3eec3e20b5d4f
   specs:
-    log-in-motion (0.0.1)
+    log-in-motion (0.0.3)
 
 GEM
   specs:
@@ -14,5 +14,5 @@ PLATFORMS
 
 DEPENDENCIES
   bubble-wrap (>= 1.1.5)
-  log-in-motion (>= 0.0.1)!
+  log-in-motion (>= 0.0.3)!
   rake (= 0.9.6)

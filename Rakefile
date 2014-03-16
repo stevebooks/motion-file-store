@@ -2,14 +2,18 @@ $:.unshift("/Library/RubyMotion/lib")
 require 'motion/project/template/ios'
 require 'bundler'
 require 'bubble-wrap'
-require 'log-in-motion'
 
-$:.unshift("./lib/")
-require './lib/motion_file_store'
+#$:.unshift("./lib/")
+#require './lib/motion_file_store'
+
+require 'bundler'
+Bundler.require
 
 Motion::Project::App.setup do |app|
   app.name = 'MotionFileStore'
 end
+
+
 
 task :spec do
   App.config.spec_mode = true
