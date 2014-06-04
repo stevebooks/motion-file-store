@@ -74,10 +74,7 @@ module MotionFileStore
 
     def save
       writeItemBuffer
-      @items = []
     end
-
-
 
     private
       def createDirectory
